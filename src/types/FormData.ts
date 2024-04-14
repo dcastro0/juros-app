@@ -1,8 +1,8 @@
 interface FormDataProps {
-  capital: string ;
+  data:{capital: string ;
   taxaJuros: string;
   tempo: string ;
-  montante: string;
+  montante: string;}
 }
 
 export { FormDataProps };

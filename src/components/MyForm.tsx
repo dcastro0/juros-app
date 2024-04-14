@@ -1,91 +1,65 @@
-import {  Text, View } from "react-native";
-import { useForm, Controller, Form } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { FormSchemaProps } from "../types/FormSchemaProps";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { formSchema } from "../schema/formSchema";
+import { useResult } from "../hooks/useResult";
+import { View } from "react-native";
 import { styles } from "../styles/styles";
-import { FormDataProps } from "../types/FormData";
-import { Input } from "./Input";
 import { MyButton } from "./MyButton";
+import { MyFormProps } from "../types/MyFormProps";
+import { ControlledInput } from "./ControlledInput";
 
-
-const MyForm = () => {
+const MyForm: React.FC<MyFormProps> = ({ calculo }) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<FormDataProps>({
-    defaultValues: {
-      capital: "",
-      taxaJuros: "",
-      tempo: "",
-      montante: "",
-    },
+  } = useForm<FormSchemaProps>({
+    resolver: zodResolver(formSchema),
   });
-  const onSubmit = (data: FormDataProps) => console.log(data);
-  const watchedValues = watch()
+  const onSubmit = (data: FormSchemaProps ) => useResult(data);
+
   return (
     <View style={styles.container_form}>
-      <Controller
-        control={control}
-        rules={{
-          required: true,
-        }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            label="Capital"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="capital"
-      />
+      {calculo !== "capital" ? (
+        <ControlledInput
+          control={control}
+          name="capital"
+          calculo={calculo}
+          label="Capital"
+          placeholder="R$"
+        />
+      ) : null}
 
-      <Controller
-        control={control}
-        rules={{
-          maxLength: 100,
-        }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            label="Taxa de Juros"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="taxaJuros"
-      />
-      <Controller
-        control={control}
-        rules={{
-          maxLength: 100,
-        }}
-        render={({ field: { onChange, onBlur, value } }) => (
-          <View>
-            <Input
-            label="Tempo"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-          
-          </View>
-        )}
-        name="tempo"
-      />
-      <Controller
-        control={control}
-        
-        render={({ field: { onChange, onBlur, value } }) => (
-          <Input
-            label="Montante"
-            onBlur={onBlur}
-            onChangeText={onChange}
-            value={value}
-          />
-        )}
-        name="montante"
-      />
+      {calculo !== "taxaJuros" ? (
+        <ControlledInput
+          control={control}
+          name="taxaJuros"
+          calculo={calculo}
+          label="Taxa de Juros"
+          placeholder="%"
+        />
+      ) : null}
+
+      {calculo !== "tempo" ? (
+        <ControlledInput
+          control={control}
+          name="tempo"
+          calculo={calculo}
+          label="Tempo"
+        />
+      ) : null}
+
+      {calculo !== "montante" ? (
+        <ControlledInput
+          control={control}
+          name="montante"
+          calculo={calculo}
+          label="Montante"
+          placeholder="R$"
+        />
+      ) : null}
 
       <MyButton title="Submit" onPress={handleSubmit(onSubmit)} />
       
