@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { formSchema } from "../schema/formSchema";
 
-type FormSchemaProps = z.infer<typeof formSchema>
+type FormSchemaType = ReturnType<typeof formSchema>;
 
-export {FormSchemaProps}
+type FormSchemaProps = z.infer<FormSchemaType>;
+
+export { FormSchemaProps };

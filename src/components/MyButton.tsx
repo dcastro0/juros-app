@@ -8,7 +8,7 @@ const MyButton: React.FC<MyButtonProps> = ({ title, ...rest }) => {
   return (
     <View>
       <TouchableOpacity {...rest} style={styles.button}>
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.textButton}>{title}</Text>
       </TouchableOpacity>
     </View>
   );

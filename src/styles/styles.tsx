@@ -1,15 +1,15 @@
 import { StyleSheet } from "react-native";
-
+// link paleta de cores : https://paletadecores.com/paleta/4180ab/ffffff/8ab3cf/bdd1de/e4ebf0/
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#606d80",
+    backgroundColor: "#e4ebf0",
   },
 
   container_form: {
-    backgroundColor: "#567ebb",
+    backgroundColor: "#8ab3cf",
     width: 280,
     height: 450,
     borderRadius: 40,
@@ -18,17 +18,22 @@ const styles = StyleSheet.create({
     gap: 10,
   },
 
-  radios: {
-    flex: 0,
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-
   title: {
     fontSize: 30,
     fontFamily: "Roboto_900Black",
-    color: "#fff",
+    color: "blue",
+  },
+
+  text: {
+    color: "white",
+    fontFamily: "Roboto_900Black",
+    fontSize: 16,
+    marginLeft: 10,
+  },
+
+  textError: {
+    color: "red",
+    fontStyle: "italic",
   },
 
   input: {
@@ -39,25 +44,25 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
+  error: {
+    borderWidth: 1,
+    borderColor: "red",
+    borderRadius: 12,
+  },
+
   button: {
     backgroundColor: "blue",
-    width: 200,
+    width: 180,
     height: 35,
     borderRadius: 12,
     alignItems: "center",
     justifyContent: "center",
   },
 
-  text: {
+  textButton: {
     color: "white",
     fontFamily: "Roboto_900Black",
     fontSize: 16,
-  },
-
-  error: {
-    borderWidth: 1,
-    borderColor: "red",
-    borderRadius: 12,
   },
 });
 
